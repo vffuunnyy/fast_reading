@@ -24,6 +24,32 @@ Ensure you have [maturin](https://github.com/PyO3/maturin) installed:
 pip install fast-reading
 ```
 
+# Tests
+
+```shell
+> 100_000 files of 1024 bytes each
+
+$ Python reading time: 0.777500 seconds
+$ FilesBatchIterator reading time (batch_size=5): 0.449203 seconds
+$ FlattenFilesBatchIterator reading time (batch_size=5): 0.448566 seconds
+```
+
+```shell
+> 100_000 files of 32768 bytes each
+
+$ Python reading time: 1.138894 seconds
+$ FilesBatchIterator reading time (batch_size=5): 0.847089 seconds
+$ FlattenFilesBatchIterator reading time (batch_size=5): 0.835050 seconds
+```
+
+```shell
+> 1_000_000 files of 4096 bytes each
+
+$ Python reading time: 14.950660 seconds
+$ FilesBatchIterator reading time (batch_size=5): 5.086445 seconds
+$ FlattenFilesBatchIterator reading time (batch_size=5): 5.068229 seconds
+```
+
 # Usage
 ### FilesBatchIterator Example
 This iterator reads files in batches and returns a list of file contents for each batch.

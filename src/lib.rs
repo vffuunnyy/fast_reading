@@ -62,8 +62,8 @@ impl FilesBatchIterator {
             let file_path = &slf.files[slf.current_index];
             match fs::read(file_path) {
                 Ok(data) => {
-                    let pybytes = PyBytes::new_bound(py, &data);
-                    batch.push(pybytes.into_py(py));
+                    let pybytes = PyBytes::new(py, &data);
+                    batch.push(pybytes.into());
                 },
                 Err(err) => {
                     return Err(PyErr::new::<pyo3::exceptions::PyIOError, _>(
@@ -126,8 +126,8 @@ impl FlattenFilesBatchIterator {
                 let file_path = &slf.files[slf.current_index];
                 match fs::read(file_path) {
                     Ok(data) => {
-                        let pybytes = PyBytes::new_bound(py, &data);
-                        slf.buffer.push_back(pybytes.into_py(py));
+                        let pybytes = PyBytes::new(py, &data);
+                        slf.buffer.push_back(pybytes.into());
                     },
                     Err(err) => {
                         return Err(PyErr::new::<pyo3::exceptions::PyIOError, _>(

@@ -10,3 +10,4 @@ wheels/
 .venv
 *.so
 target/
+fast_reading_test_files/
